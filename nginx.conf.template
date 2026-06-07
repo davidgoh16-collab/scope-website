@@ -1,0 +1,34 @@
+# Expanded by the nginx image's envsubst step at container start.
+# ${PORT} comes from the environment (Cloud Run sets it; Dockerfile defaults it
+# to 8080). nginx's own $uri variable is left untouched because it is not an
+# environment variable.
+
+server {
+    listen       ${PORT};
+    server_name  _;
+
+    root   /usr/share/nginx/html;
+    index  index.html;
+
+    # Single-page app: hash-based routing happens client-side, so every path
+    # falls back to index.html.
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Always revalidate the HTML so deploys are picked up immediately.
+    location = /index.html {
+        add_header Cache-Control "no-cache";
+    }
+
+    # Lightweight health endpoint for Cloud Run / uptime checks.
+    location = /healthz {
+        access_log off;
+        add_header Content-Type text/plain;
+        return 200 "ok\n";
+    }
+
+    gzip            on;
+    gzip_min_length 1024;
+    gzip_types      text/html text/css application/javascript image/svg+xml;
+}

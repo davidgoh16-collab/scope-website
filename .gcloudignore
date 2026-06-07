@@ -1,0 +1,7 @@
+# Files uploaded for `gcloud run deploy --source .` but not needed in the build.
+.git/
+.gitignore
+project/
+chats/
+README.md
+DEPLOY.md
