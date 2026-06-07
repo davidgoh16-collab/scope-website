@@ -1,0 +1,368 @@
+/* ============================================================
+   SCOPE DESIGN SYSTEM — Colors & Typography
+   Version 1.0 · May 2026
+   scope-your-dream-school
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+:root {
+
+  /* ── Fonts ───────────────────────────────────────────────── */
+  --font-display: 'Nunito', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+  /* ── Blue — Primary ──────────────────────────────────────── */
+  --blue-50:  #EBF2FB;
+  --blue-100: #D2E6F7;
+  --blue-200: #A5CCF0;
+  --blue-300: #78B2E8;
+  --blue-400: #6AA2DE;
+  --blue-500: #5B8FD4;   /* Logo blue — primary brand */
+  --blue-600: #3B76BE;
+  --blue-700: #2F5E98;
+  --blue-800: #21426B;
+  --blue-900: #13263D;
+
+  /* ── Sage Green — Secondary ──────────────────────────────── */
+  --green-50:  #EEF6F1;
+  --green-100: #D3E9DA;
+  --green-200: #A7D3B5;
+  --green-300: #9FC6AC;
+  --green-400: #8BB9A1;
+  --green-500: #7BAE8F;   /* Logo green — secondary brand */
+  --green-600: #638F74;
+  --green-700: #4E705C;
+  --green-800: #344B3D;
+  --green-900: #1A261F;
+
+  /* ── Purple — Tertiary ───────────────────────────────────── */
+  --purple-50:  #F2EFF9;
+  --purple-100: #E0D8F4;
+  --purple-200: #C1B1E9;
+  --purple-300: #A993DC;
+  --purple-400: #9E83CE;
+  --purple-500: #9478C0;   /* Logo purple — magnifying glass O */
+  --purple-600: #7558A5;
+  --purple-700: #5C4482;
+  --purple-800: #40305A;
+  --purple-900: #241B32;
+
+  /* ── Pink — Neutral Accent ───────────────────────────────── */
+  --pink-50:  #FDF1F4;
+  --pink-100: #F9DDE4;
+  --pink-200: #F3BAC7;
+  --pink-300: #ECA9B8;
+  --pink-400: #EDA0B0;
+  --pink-500: #E898A8;   /* Neutral pink — warmth, welcome */
+  --pink-600: #D06B80;
+  --pink-700: #AD516B;
+  --pink-800: #7A384B;
+  --pink-900: #4A222E;
+
+  /* ── Coral — Accent only ─────────────────────────────────── */
+  --coral-50:  #FEEFF1;
+  --coral-100: #FDD8DC;
+  --coral-200: #FAB0B8;
+  --coral-300: #F68894;
+  --coral-400: #DC7480;
+  --coral-500: #CF6070;   /* Reddish-pink coral — accent only */
+  --coral-600: #A94D5A;
+  --coral-700: #853B46;
+  --coral-800: #5C2830;
+  --coral-900: #38181D;
+
+  /* ── Neutral / Grey (blue-tinted) ────────────────────────── */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F8F9FC;
+  --neutral-100: #EEF0F5;
+  --neutral-200: #DDE0EB;
+  --neutral-300: #C5CAD8;
+  --neutral-400: #A0A8BC;
+  --neutral-500: #7C86A0;
+  --neutral-600: #5C6480;
+  --neutral-700: #404B68;
+  --neutral-800: #28334F;
+  --neutral-900: #131D38;
+
+  /* ── Semantic: Text ──────────────────────────────────────── */
+  --text-primary:    var(--neutral-900);
+  --text-secondary:  var(--neutral-700);
+  --text-muted:      var(--neutral-500);
+  --text-disabled:   var(--neutral-400);
+  --text-inverse:    var(--neutral-0);
+  --text-link:       var(--blue-600);
+  --text-link-hover: var(--blue-700);
+  --text-brand:      var(--blue-500);
+
+  /* ── Semantic: Background ────────────────────────────────── */
+  --bg-default:       var(--neutral-0);
+  --bg-subtle:        var(--neutral-50);
+  --bg-muted:         var(--neutral-100);
+  --bg-brand:         var(--blue-500);
+  --bg-brand-subtle:  var(--blue-50);
+  --bg-dark:          var(--blue-900);
+  --bg-overlay:       rgba(19, 29, 56, 0.50);
+
+  /* ── Semantic: Border ────────────────────────────────────── */
+  --border-default:   var(--neutral-200);
+  --border-strong:    var(--neutral-300);
+  --border-focus:     var(--blue-500);
+  --border-selected:  var(--blue-500);
+
+  /* ── Semantic: Status ────────────────────────────────────── */
+  --status-success:      var(--green-500);
+  --status-success-bg:   var(--green-50);
+  --status-warning:      #D4A017;
+  --status-warning-bg:   #FEF9EC;
+  --status-error:        var(--coral-500);
+  --status-error-bg:     var(--coral-50);
+  --status-info:         var(--blue-500);
+  --status-info-bg:      var(--blue-50);
+
+  /* ── Match Percentage Colours ────────────────────────────── */
+  --match-high:    var(--green-500);    /* 80–100% */
+  --match-high-bg: var(--green-50);
+  --match-mid:     var(--blue-500);     /* 60–79% */
+  --match-mid-bg:  var(--blue-50);
+  --match-low:     var(--neutral-400);  /* <60% */
+  --match-low-bg:  var(--neutral-100);
+
+  /* ── Type Scale ──────────────────────────────────────────── */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+  --text-7xl:  4.5rem;     /* 72px */
+
+  /* ── Line Heights ────────────────────────────────────────── */
+  --leading-none:    1;
+  --leading-tight:   1.2;
+  --leading-snug:    1.35;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+  --leading-loose:   1.8;
+
+  /* ── Font Weights ────────────────────────────────────────── */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+  --weight-black:     900;
+
+  /* ── Letter Spacing ──────────────────────────────────────── */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide:   0.02em;
+  --tracking-wider:  0.04em;
+  --tracking-widest: 0.08em;
+
+  /* ── Spacing ─────────────────────────────────────────────── */
+  --space-0:  0px;
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* ── Border Radius ───────────────────────────────────────── */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-pill: 999px;
+
+  /* ── Shadows (blue-tinted) ───────────────────────────────── */
+  --shadow-sm:    0 1px 3px rgba(91, 143, 212, 0.08),
+                  0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md:    0 4px 12px rgba(91, 143, 212, 0.10),
+                  0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg:    0 8px 24px rgba(91, 143, 212, 0.13),
+                  0 4px 8px rgba(0, 0, 0, 0.07);
+  --shadow-xl:    0 16px 48px rgba(91, 143, 212, 0.16),
+                  0 8px 16px rgba(0, 0, 0, 0.09);
+  --shadow-focus: 0 0 0 3px rgba(91, 143, 212, 0.35);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-fast:   120ms ease-out;
+  --transition-base:   200ms ease-out;
+  --transition-slow:   350ms ease-in-out;
+  --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-index ─────────────────────────────────────────────── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-dropdown: 100;
+  --z-sticky:  200;
+  --z-modal:   400;
+  --z-toast:   500;
+}
+
+/* ── Base Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+  background-color: var(--bg-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-wrap: pretty;
+}
+
+/* ── Semantic Type ───────────────────────────────────────────── */
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+h4, .h4 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+h5, .h5 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+h6, .h6 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+}
+
+.body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+
+.overline {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--text-link-hover);
+}
+
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Utility: display type on dark bg ─────────────────────── */
+.on-dark {
+  color: var(--text-inverse);
+}
+
+.on-dark h1, .on-dark h2, .on-dark h3,
+.on-dark h4, .on-dark h5, .on-dark h6 {
+  color: var(--neutral-0);
+}
+
+.on-dark p, .on-dark .body {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
