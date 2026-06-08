@@ -3405,15 +3405,32 @@ const DashboardPreview = ({ large }) => (
 
 const QUIZ_QUESTIONS = [
   {
-    id: 'stage',
+    id: 'role',
+    label: 'About you',
+    title: "Who's taking the quiz?",
+    sub: "We'll tailor the questions to match.",
+    type: 'single',
+    options: [
+      { id: 'student', label: "I'm the student", sub: 'Answering for myself', icon: '🙋' },
+      { id: 'guardian', label: 'Parent or guardian', sub: 'Helping someone else', icon: '👨‍👩‍👧' },
+    ],
+  },
+  {
+    id: 'year',
     label: 'About you',
     title: "Which year are you in?",
     sub: "This helps us know which schools to look at.",
     type: 'single',
+    guardian: { title: "Which year is your child in?" },
     options: [
       { id: 'y6', label: 'Year 6', sub: 'Looking at secondary schools', icon: '📚' },
+      { id: 'y7', label: 'Year 7', sub: 'In-year secondary move', icon: '🏫' },
+      { id: 'y8', label: 'Year 8', sub: 'In-year secondary move', icon: '🏫' },
+      { id: 'y9', label: 'Year 9', sub: 'In-year secondary move', icon: '🏫' },
+      { id: 'y10', label: 'Year 10', sub: 'In-year secondary move', icon: '🏫' },
       { id: 'y11', label: 'Year 11', sub: 'Looking at sixth forms & colleges', icon: '🎓' },
-      { id: 'parent', label: 'Parent or guardian', sub: 'Helping someone else', icon: '👨‍👩‍👧' },
+      { id: 'y12', label: 'Year 12', sub: 'In-year sixth form move', icon: '🎓' },
+      { id: 'y13', label: 'Year 13', sub: 'In-year sixth form move', icon: '🎓' },
     ],
   },
   {
@@ -3431,6 +3448,7 @@ const QUIZ_QUESTIONS = [
     title: "Which subjects do you actually look forward to?",
     sub: "Pick as many as you like. There are no wrong answers.",
     type: 'multi',
+    guardian: { title: "Which subjects does your child actually look forward to?" },
     options: [
       { id: 'science', label: 'Science', icon: '🧪' },
       { id: 'maths', label: 'Maths', icon: '📐' },
@@ -3452,6 +3470,7 @@ const QUIZ_QUESTIONS = [
     title: "What kind of lessons make you actually want to show up?",
     sub: "Pick one — you can change this later.",
     type: 'single',
+    guardian: { title: "What kind of lessons make your child actually want to show up?" },
     options: [
       { id: 'practical', label: 'Practical & hands-on', sub: 'Experiments, making things, building', icon: '🛠️' },
       { id: 'creative', label: 'Creative & expressive', sub: 'Writing, performance, art', icon: '🎨' },
@@ -3465,6 +3484,7 @@ const QUIZ_QUESTIONS = [
     title: 'How do you feel about a longer journey to school?',
     sub: "Some schools are perfect for you but might be further. How far is too far?",
     type: 'single',
+    guardian: { sub: "Some schools are a perfect fit but might be further. How far is too far?" },
     options: [
       { id: 'short', label: 'Stay close', sub: 'Under 20 minutes — short journey wins' },
       { id: 'medium', label: "Don't mind 30 minutes", sub: 'If the school is a great fit' },
@@ -3497,6 +3517,17 @@ const QUIZ_QUESTIONS = [
     type: 'multi',
     optional: true,
     sensitive: true,
+    guardian: {
+      title: 'Is there anything we should know about how your child learns best?',
+      options: [
+        { id: 'ehcp', label: 'They have an EHCP', icon: '📋' },
+        { id: 'sen', label: 'SEN support (no EHCP)', icon: '✏️' },
+        { id: 'phys', label: 'Physical access needs', icon: '♿' },
+        { id: 'eal', label: 'English as Additional Language', icon: '🌐' },
+        { id: 'none', label: 'None of these', icon: '✓' },
+        { id: 'skip', label: 'Prefer not to say', icon: '🤐' },
+      ],
+    },
     options: [
       { id: 'ehcp', label: 'I have an EHCP', icon: '📋' },
       { id: 'sen', label: 'SEN support (no EHCP)', icon: '✏️' },
@@ -3527,7 +3558,12 @@ const QuizPage = ({ navigate }) => {
     );
   }
 
-  const q = QUIZ_QUESTIONS[step - 1];
+  const isGuardian = answers.role === 'guardian';
+  const resolveQ = (question) =>
+    isGuardian && question.guardian
+      ? { ...question, ...question.guardian, options: question.guardian.options || question.options }
+      : question;
+  const q = resolveQ(QUIZ_QUESTIONS[step - 1]);
   const isLast = step === total;
   const isFirst = step === 1;
 
@@ -3654,7 +3690,7 @@ const QuizIntro = ({ onStart, navigate }) => (
       </div>
       <h1 style={{ fontSize: 56, marginBottom: 20 }}>Let's find your school.</h1>
       <p className="lead" style={{ margin: '0 auto 40px', fontSize: 19 }}>
-        Just seven plain-English questions. You can pause at any point, skip optional questions, and edit your answers later. Nothing leaves your device unless you choose to save your results.
+        Just a few plain-English questions. You can pause at any point, skip optional questions, and edit your answers later. Nothing leaves your device unless you choose to save your results.
       </p>
 
       <div style={{
@@ -3861,6 +3897,9 @@ const QuizResults = ({ answers, navigate, onRetake }) => {
     }).sort((a, b) => b.computedMatch - a.computedMatch);
   }, [answers]);
 
+  const yearOptions = QUIZ_QUESTIONS.find(question => question.id === 'year')?.options || [];
+  const yearLabel = yearOptions.find(opt => opt.id === answers.year)?.label || 'Browsing';
+
   return (
     <React.Fragment>
       <section style={{
@@ -3892,7 +3931,7 @@ const QuizResults = ({ answers, navigate, onRetake }) => {
           }}>
             <div style={{ display: 'flex', gap: 8 }}>
               <span className="chip chip-blue"><IconMapPin size={12} /> {answers.postcode || 'SW11'}</span>
-              <span className="chip chip-purple">{answers.stage === 'y6' ? 'Year 6' : answers.stage === 'y11' ? 'Year 11' : 'Browsing'}</span>
+              <span className="chip chip-purple">{yearLabel}</span>
               <span className="chip">{scored.length} matches</span>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
